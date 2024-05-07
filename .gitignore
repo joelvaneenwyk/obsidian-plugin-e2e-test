@@ -8,3 +8,5 @@ test/empty_vault/
 .yarn/
 .test/
 .build/
+
+/main.js

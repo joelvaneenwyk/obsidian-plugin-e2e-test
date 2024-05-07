@@ -1,6 +1,6 @@
-const Application = require("spectron").Application;
-const { assert } = require("chai");
-const fs = require("fs");
+import { Application } from "spectron";
+import { assert } from "chai";
+import fs from "fs";
 
 describe("Plugin", function () {
   this.timeout(10000);

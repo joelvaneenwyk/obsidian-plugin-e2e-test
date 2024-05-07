@@ -4,7 +4,7 @@ This is a sample repo demonstrating how to write test cases that interact with O
 
 ## Notable files
 
-- `test/spec.js` - This is a mocha test case that is using [spectron](https://www.electronjs.org/spectron) to control obsidian
+- `test/spec.mjs` - This is a mocha test case that is using [spectron](https://www.electronjs.org/spectron) to control obsidian
 - `Dockerfile` - This will let you run your tests inside CI
 - `.github/workflows/action.yml` - CI setup so your tests run in github
 
