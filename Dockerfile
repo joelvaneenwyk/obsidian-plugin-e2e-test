@@ -1,7 +1,9 @@
-ARG VERSION=0.11.13
+
 FROM node:22
 
+ARG VERSION=0.11.13
 ENV VERSION=$VERSION
+
 RUN apt update
 
 # This is all the stuff obsidian needs to run
