@@ -5,6 +5,24 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@codemirror/state@npm:^6.4.0, @codemirror/state@npm:^6.4.1":
+  version: 6.4.1
+  resolution: "@codemirror/state@npm:6.4.1"
+  checksum: 10c0/cdab74d0ca4e262531a257ac419c9c44124f3ace8b0ca1262598a9218fbb6fd8f0afeb4b5ed2f64552a9573a0fc5d55481d4b9b05e9505ef729f9bd0f9469423
+  languageName: node
+  linkType: hard
+
+"@codemirror/view@npm:^6.26.3":
+  version: 6.26.3
+  resolution: "@codemirror/view@npm:6.26.3"
+  dependencies:
+    "@codemirror/state": "npm:^6.4.0"
+    style-mod: "npm:^4.1.0"
+    w3c-keyname: "npm:^2.2.4"
+  checksum: 10c0/b2018bd4a0f738dcbfb609412784c7fb13d276d8be6044b513875710567c802c8d6ab5ad755c5669d09029b1c0f7dc739c2e5e5e1256df3d879b1899a07b8df8
+  languageName: node
+  linkType: hard
+
 "@electron/get@npm:^1.12.4":
   version: 1.14.1
   resolution: "@electron/get@npm:1.14.1"
@@ -2509,6 +2527,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "obsidian-plugin-e2e-test@workspace:."
   dependencies:
+    "@codemirror/state": "npm:^6.4.1"
+    "@codemirror/view": "npm:^6.26.3"
     "@rollup/plugin-commonjs": "npm:^25.0.7"
     "@rollup/plugin-node-resolve": "npm:^15.2.3"
     "@rollup/plugin-typescript": "npm:^11.1.6"
@@ -3266,6 +3286,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"style-mod@npm:^4.1.0":
+  version: 4.1.2
+  resolution: "style-mod@npm:4.1.2"
+  checksum: 10c0/ad4d870b3642b0e42ecc7be0e106dd14b7af11985e34fee8de34e5e38c3214bfc96fa7055acea86d75a3a59ddea3f6a8c6641001a66494d7df72d09685e3fadb
+  languageName: node
+  linkType: hard
+
 "sumchecker@npm:^3.0.1":
   version: 3.0.1
   resolution: "sumchecker@npm:3.0.1"
@@ -3495,6 +3522,13 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 10c0/bcbb807a917d374a49f475fae2e87fdca7da5e5530820ef53f65ba1d12131bd81a92ecf259cc7ce317cbe0f289e7d79fdfebcef9bfa3087c8c8a2fa304c9be54
+  languageName: node
+  linkType: hard
+
+"w3c-keyname@npm:^2.2.4":
+  version: 2.2.8
+  resolution: "w3c-keyname@npm:2.2.8"
+  checksum: 10c0/37cf335c90efff31672ebb345577d681e2177f7ff9006a9ad47c68c5a9d265ba4a7b39d6c2599ceea639ca9315584ce4bd9c9fbf7a7217bfb7a599e71943c4c4
   languageName: node
   linkType: hard
 
