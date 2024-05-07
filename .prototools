@@ -1,0 +1,6 @@
+#
+# obsidian-plugin-e2e-test | proto config
+#
+
+node = "22.1.0"
+yarn = "4.1.1"

@@ -1,0 +1,14 @@
+#
+# obsidian-plugin-e2e-test | CSpell config
+#
+version: "0.2"
+ignorePaths: []
+dictionaryDefinitions:
+  - name: cspell-obsidian-e2e
+    path: ./.vscode/cspell-obsidian-e2e.txt
+    addWords: true
+dictionaries:
+  - cspell-obsidian-e2e
+words: []
+ignoreWords: []
+import: []

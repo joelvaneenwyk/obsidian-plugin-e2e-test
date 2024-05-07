@@ -1,8 +1,16 @@
-FROM node:15
+#
+# obsidian-plugin-e2e-test | Docker image
+#
+
+FROM node:22
+
+ARG VERSION=0.11.13
+ENV VERSION=$VERSION
+
 RUN apt update
 
 # This is all the stuff obsidian needs to run
-RUN apt -y install \
+RUN apt -y install --no-install-recommends \
     xvfb \
     libgtk-3-0 \
     libnotify4 \
@@ -22,8 +30,8 @@ RUN chown -R obsidian:obsidian /app /home/obsidian
 WORKDIR /app
 
 # Install obsidian
-RUN curl -OL https://github.com/obsidianmd/obsidian-releases/releases/download/v0.11.13/Obsidian-0.11.13.AppImage
-RUN mv Obsidian-0.11.13.AppImage /obsidian.AppImage
+RUN curl -OL https://github.com/obsidianmd/obsidian-releases/releases/download/v${VERSION}/Obsidian-${VERSION}.AppImage
+RUN mv Obsidian-${VERSION}.AppImage /obsidian.AppImage
 RUN chmod +x /obsidian.AppImage
 RUN cd / && /obsidian.AppImage --appimage-extract
 RUN mv /squashfs-root /obsidian

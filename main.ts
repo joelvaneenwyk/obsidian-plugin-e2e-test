@@ -1,3 +1,9 @@
+/**
+ *
+ * obsidian-plugin-e2e-test | main source file
+ *
+ */
+
 import { App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
 interface MyPluginSettings {
@@ -42,9 +48,10 @@ export default class MyPlugin extends Plugin {
 
         this.addSettingTab(new SampleSettingTab(this.app, this));
 
-        this.registerCodeMirror((cm: CodeMirror.Editor) => {
-            console.log('codemirror', cm);
-        });
+        // #todo No longer available or may have been renamed/moved.
+        //this.registerCodeMirror((cm: CodeMirror.Editor) => {
+        //    console.log('codemirror', cm);
+        //});
 
         this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
             console.log('click', evt);

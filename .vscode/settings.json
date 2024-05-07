@@ -1,0 +1,10 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/dependabot-2.0.json": "**/dependabot.yml",
+        "https://taskfile.dev/schema.json": [
+            "**/taskfile.yml",
+            "**/taskfile.yaml"
+        ],
+        "https://json.schemastore.org/github-workflow.json": "**/workflows/action.yml"
+    }
+}
