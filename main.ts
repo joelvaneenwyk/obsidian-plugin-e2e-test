@@ -1,3 +1,9 @@
+/**
+ *
+ * obsidian-plugin-e2e-test | main source file
+ *
+ */
+
 import { App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
 interface MyPluginSettings {

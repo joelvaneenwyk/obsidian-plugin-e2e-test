@@ -1,3 +1,6 @@
+#
+# obsidian-plugin-e2e-test | Docker image
+#
 
 FROM node:22
 
