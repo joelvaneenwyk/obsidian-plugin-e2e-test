@@ -1,3 +1,7 @@
+#
+# obsidian-plugin-e2e-test | `.gitignore`
+#
+
 node_modules/
 test/empty_vault/
 !test/empty_vault/.gitkeep
