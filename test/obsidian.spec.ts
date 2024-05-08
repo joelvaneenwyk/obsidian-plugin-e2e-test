@@ -20,7 +20,7 @@ test('example test', async () => {
   // Wait for the first BrowserWindow to open
   // and return its Page object
   const window = await electronApp.firstWindow();
-  await window.screenshot({ path: 'intro.png' });
+  await window.screenshot({ path: './.build/obsidian_start_page.png' });
 
   // close app
   await electronApp.close();
