@@ -6,7 +6,7 @@ test('example test', async () => {
     path = "/obsidian/obsidian";
   }
   const electronApp = await electron.launch({
-    executablePath: '',
+    executablePath: path,
     args: ['test/empty_vault']
   });
   const isPackaged = await electronApp.evaluate(async ({ app }) => {
@@ -15,7 +15,7 @@ test('example test', async () => {
     return app.isPackaged;
   });
 
-  expect(isPackaged).toBe(false);
+  expect(isPackaged).toBe(true);
 
   // Wait for the first BrowserWindow to open
   // and return its Page object
