@@ -3,10 +3,13 @@
 #
 
 node_modules/
+
 test/empty_vault/
 !test/empty_vault/.gitkeep
+
 .yarn/
-.test/
 .build/
+test-results/
+playwright-report/
 
 /main.js
