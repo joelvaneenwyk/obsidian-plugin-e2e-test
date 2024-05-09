@@ -1,23 +1,27 @@
-#!/usr/bin/sh
+#!/usr/bin/env bash
 
-set -eax
+set -eaE
 
 # Install everything Obsidian needs to run
-if command -v sudo && command -v apt-get; then
-    sudo apt-get update
-    sudo apt-get install -y --no-install-recommends \
-        curl \
-        xvfb \
-        libgtk-3-0 \
-        libnotify4 \
-        libnss3 \
-        libxss1 \
-        libxtst6 \
-        xdg-utils \
-        libatspi2.0-0 \
-        libuuid1 \
-        libsecret-1-0 \
-        libasound2
+if command -v sudo >/dev/null 2>&1 && command -v apt-get >/dev/null 2>&1 && command -v dpkg-query >/dev/null 2>&1; then
+    pkgs=(
+        curl xvfb libgtk-3-0 libnotify4 libnss3
+        libxss1 libxtst6 xdg-utils libatspi2.0-0
+        libuuid1 libsecret-1-0 libasound2
+    )
+    pkgs_to_install=()
+    for pkg in "${pkgs[@]}"; do
+        if ! status="$(dpkg-query -W --showformat='${db:Status-Status}' "$pkg" 2>&1)" || [ ! "${status:-}" = "installed" ]; then
+            pkgs_to_install+=("$pkg")
+        fi
+    done
+
+    if ((${#pkgs_to_install[@]} != 0)); then
+        sudo apt-get update &&
+            sudo apt-get install --yes --no-install-recommends "${pkgs_to_install[@]}"
+    else
+        echo "All required packages are already installed."
+    fi
 fi
 
 (
