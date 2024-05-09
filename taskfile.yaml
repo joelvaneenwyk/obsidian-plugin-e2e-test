@@ -5,7 +5,7 @@ version: "3"
 tasks:
   default:
     cmds:
-      - task: build
+      - task: test
 
   install:
     deps: []
@@ -18,7 +18,19 @@ tasks:
       - yarn build
       - yarn test
 
+  test:
+    deps: [build]
+    cmds:
+      - yarn test
+
   run:
+    deps: [build, install-obsidian]
+    cmds:
+      - cmd: yarn test
+    env:
+      OBSIDIAN_PATH: "./.build/obsidian/obsidian"
+
+  xvfb-run:
     deps: [build, install-obsidian]
     cmds:
       - cmd: xvfb-run --auto-servernum yarn test
