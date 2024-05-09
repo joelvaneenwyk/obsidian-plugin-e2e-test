@@ -18,12 +18,24 @@ tasks:
       - yarn build
       - yarn test
 
+  run:
+    deps: [build, install-obsidian]
+    cmds:
+      - cmd: xvfb-run --auto-servernum yarn test
+    env:
+      DISPLAY: ":99"
+      OBSIDIAN_PATH: "./.build/obsidian/obsidian"
+
   install-obsidian:
     cmds:
+      - cmd: bash ./build/install-obsidian.sh
+        platforms: [linux]
       - cmd: echo "Done."
 
   install-proto:
     cmds:
+      - cmd: sh ./build/install-proto.sh
+        platforms: [linux]
       - cmd: echo "Done."
 
   docker-build:
