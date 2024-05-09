@@ -11,7 +11,7 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "yarn@4.2.1+sha256.15ce76682a8cd2090257b883cd69c637925b29573f9573e8403ec227d5ab6815",
+  "packageManager": "yarn@4.2.2+sha512.c44e283c54e02de9d1da8687025b030078c1b9648d2895a65aab8e64225bfb7becba87e1809fc0b4b6778bbd47a1e2ab6ac647de4c5e383a53a7c17db6c3ff4b",
   "dependencies": {
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.26.3",

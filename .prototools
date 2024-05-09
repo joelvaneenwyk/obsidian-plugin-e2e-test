@@ -6,7 +6,7 @@ act = "0.2.62"
 actionlint = "1.7.0"
 node = "22.1.0"
 task = "3.37.1"
-yarn = "4.1.1"
+yarn = "4.2.2"
 
 [plugins]
 act = "source:https://raw.githubusercontent.com/theomessin/proto-toml-plugins/master/act.toml"
