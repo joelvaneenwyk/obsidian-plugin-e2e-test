@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-playwright.playwright",
+        "streetsidesoftware.hunspell",
+        "dbaeumer.vscode-eslint",
+        "rvest.vs-code-prettier-eslint",
+        "task.vscode-task",
+        "spmeesseman.vscode-taskexplorer"
+    ]
+}
