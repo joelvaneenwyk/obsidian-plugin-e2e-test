@@ -1,0 +1,35 @@
+# https://taskfile.dev
+
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task: build
+
+  install:
+    deps: []
+    cmds:
+      - yarn install
+
+  build:
+    deps: [install]
+    cmds:
+      - yarn build
+      - yarn test
+
+  install-obsidian:
+    cmds:
+      - cmd: echo "Done."
+
+  install-proto:
+    cmds:
+      - cmd: echo "Done."
+
+  docker-build:
+    cmds:
+      - cmd: docker build -t obsidian .
+
+  docker-run:
+    cmds:
+      - cmd: docker run --rm --security-opt seccomp="$(current_dir)/chrome.json" obsidian
