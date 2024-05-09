@@ -3,6 +3,7 @@
 #
 
 node_modules/
+package-lock.json
 
 test/empty_vault/
 !test/empty_vault/.gitkeep
