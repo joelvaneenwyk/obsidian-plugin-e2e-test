@@ -2,7 +2,11 @@
 # obsidian-plugin-e2e-test | `.gitignore`
 #
 
+.clj-kondo/
+.lsp/
+
 node_modules/
+package-lock.json
 
 test/empty_vault/
 !test/empty_vault/.gitkeep

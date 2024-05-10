@@ -26,7 +26,13 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - run: ./setup.sh
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ github.token }}
+
+      # This will install a local Obsidian for testing and install 'proto'
+      - run: task setup
 
       - run: yarn install
       - run: yarn build

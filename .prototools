@@ -2,5 +2,13 @@
 # obsidian-plugin-e2e-test | proto config
 #
 
+act = "0.2.62"
+actionlint = "1.7.0"
 node = "22.1.0"
-yarn = "4.1.1"
+task = "3.37.1"
+yarn = "4.2.2"
+
+[plugins]
+act = "source:https://raw.githubusercontent.com/theomessin/proto-toml-plugins/master/act.toml"
+actionlint = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/actionlint/plugin.toml"
+task = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/task/plugin.toml"
