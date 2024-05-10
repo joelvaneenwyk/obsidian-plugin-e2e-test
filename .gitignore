@@ -2,6 +2,9 @@
 # obsidian-plugin-e2e-test | `.gitignore`
 #
 
+.clj-kondo/
+.lsp/
+
 node_modules/
 package-lock.json
 
