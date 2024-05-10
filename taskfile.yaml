@@ -2,13 +2,19 @@
 
 version: "3"
 
+vars:
+  OBSIDIAN_PATH: "./.build/obsidian/obsidian"
+
 tasks:
   default:
     cmds:
       - task: test
 
+  setup:
+    deps: [install-obsidian, install-proto]
+
   install:
-    deps: []
+    deps: [setup]
     cmds:
       - yarn install
 
@@ -24,31 +30,36 @@ tasks:
       - yarn test
 
   run:
-    deps: [build, install-obsidian]
+    deps: [build]
     cmds:
       - cmd: yarn test
     env:
-      OBSIDIAN_PATH: "./.build/obsidian/obsidian"
+      OBSIDIAN_PATH: "{{ .OBSIDIAN_PATH }}"
+
+  install-obsidian:
+    internal: true
+    cmds:
+      - cmd: bash ./build/install-obsidian.sh
+        platforms: [linux]
+    status:
+      - 'test -f "{{ .ROOT_DIR }}/.build/obsidian/obsidian"'
+
+  install-proto:
+    internal: true
+    cmds:
+      - cmd: bash ./build/install-proto.sh
+        platforms: [linux]
+    status:
+      - test -f ~/.proto/bin/proto
 
   xvfb-run:
-    deps: [build, install-obsidian]
+    internal: true
+    deps: [build]
     cmds:
       - cmd: xvfb-run --auto-servernum yarn test
     env:
       DISPLAY: ":99"
-      OBSIDIAN_PATH: "./.build/obsidian/obsidian"
-
-  install-obsidian:
-    cmds:
-      - cmd: bash ./build/install-obsidian.sh
-        platforms: [linux]
-      - cmd: echo "Done."
-
-  install-proto:
-    cmds:
-      - cmd: sh ./build/install-proto.sh
-        platforms: [linux]
-      - cmd: echo "Done."
+      OBSIDIAN_PATH: "{{ .OBSIDIAN_PATH }}"
 
   docker-build:
     cmds:

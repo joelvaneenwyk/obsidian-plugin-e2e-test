@@ -17,6 +17,11 @@
   "dependencies": {
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.26.3",
+    "electron": "^30.0.3",
+    "electron-chromedriver": "^29.3.3",
+    "obsidian": "^1.5.7"
+  },
+  "devDependencies": {
     "@playwright/test": "^1.44.0",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -24,9 +29,6 @@
     "@types/node": "^20.12.11",
     "@types/selenium-webdriver": "^4",
     "cspell": "^8.8.0",
-    "electron": "^30.0.3",
-    "electron-chromedriver": "^29.3.3",
-    "obsidian": "^1.5.7",
     "playwright": "^1.44.0",
     "rollup": "^4.17.2",
     "selenium-webdriver": "^4.20.0",
