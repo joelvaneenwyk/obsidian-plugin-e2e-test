@@ -10,9 +10,9 @@ test('obsidian launch test', async () => {
 
   let obsidianPaths = [
     process.env.OBSIDIAN_PATH,
-    "/obsidian/obsidian",
+    '/obsidian/obsidian',
     `${rootPath}/.build/obsidian/obsidian`
-  ]
+  ];
 
   let obsidianPath = null;
   for (let path of obsidianPaths) {
