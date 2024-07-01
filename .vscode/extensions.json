@@ -5,6 +5,7 @@
     "dbaeumer.vscode-eslint",
     "rvest.vs-code-prettier-eslint",
     "task.vscode-task",
-    "spmeesseman.vscode-taskexplorer"
+    "spmeesseman.vscode-taskexplorer",
+    "streetsidesoftware.code-spell-checker"
   ]
 }
