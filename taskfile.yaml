@@ -1,9 +1,9 @@
 # https://taskfile.dev
 
-version: "3"
+version: '3'
 
 vars:
-  OBSIDIAN_PATH: "./.build/obsidian/obsidian"
+  OBSIDIAN_PATH: './.build/obsidian/obsidian'
 
 tasks:
   default:
@@ -34,7 +34,7 @@ tasks:
     cmds:
       - cmd: yarn test
     env:
-      OBSIDIAN_PATH: "{{ .OBSIDIAN_PATH }}"
+      OBSIDIAN_PATH: '{{ .OBSIDIAN_PATH }}'
 
   install-obsidian:
     internal: true
@@ -58,8 +58,8 @@ tasks:
     cmds:
       - cmd: xvfb-run --auto-servernum yarn test
     env:
-      DISPLAY: ":99"
-      OBSIDIAN_PATH: "{{ .OBSIDIAN_PATH }}"
+      DISPLAY: ':99'
+      OBSIDIAN_PATH: '{{ .OBSIDIAN_PATH }}'
 
   docker-build:
     cmds:

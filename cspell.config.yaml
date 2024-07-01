@@ -1,7 +1,7 @@
 #
 # obsidian-plugin-e2e-test | CSpell config
 #
-version: "0.2"
+version: '0.2'
 ignorePaths:
   - test-results/
   - playwright-report/

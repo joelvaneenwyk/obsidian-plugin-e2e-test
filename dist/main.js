@@ -23,21 +23,42 @@ PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 /* global Reflect, Promise, SuppressedError, Symbol */
 
-
 function __awaiter(thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
+  function adopt(value) {
+    return value instanceof P
+      ? value
+      : new P(function (resolve) {
+          resolve(value);
+        });
+  }
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function rejected(value) {
+      try {
+        step(generator['throw'](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
 }
 
-typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-    var e = new Error(message);
-    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
-};
+typeof SuppressedError === 'function'
+  ? SuppressedError
+  : function (error, suppressed, message) {
+      var e = new Error(message);
+      return (e.name = 'SuppressedError'), (e.error = error), (e.suppressed = suppressed), e;
+    };
 
 /**
  *
@@ -45,105 +66,109 @@ typeof SuppressedError === "function" ? SuppressedError : function (error, suppr
  *
  */
 const DEFAULT_SETTINGS = {
-    mySetting: 'default'
+  mySetting: 'default'
 };
 class MyPlugin extends obsidian.Plugin {
-    constructor() {
-        const _manifest = {
-            id: 'my-plugin',
-            name: 'My Plugin',
-            author: 'Author Name',
-            version: '0.0.1',
-            minAppVersion: '0.9.0',
-            description: 'My awesome plugin for Obsidian!'
-        };
-        super(app, _manifest);
-        this.settings = Object.assign({}, DEFAULT_SETTINGS);
-    }
-    onload() {
-        return __awaiter(this, void 0, void 0, function* () {
-            console.log('loading plugin');
-            yield this.loadSettings();
-            this.addRibbonIcon('dice', 'Sample Plugin', () => {
-                new obsidian.Notice('This is a notice!');
-            });
-            this.addStatusBarItem().setText('Status Bar Text');
-            this.addCommand({
-                id: 'open-sample-modal',
-                name: 'Open Sample Modal',
-                // callback: () => {
-                // 	console.log('Simple Callback');
-                // },
-                checkCallback: (checking) => {
-                    const leaf = this.app.workspace.activeLeaf;
-                    if (leaf) {
-                        if (!checking) {
-                            new SampleModal(this.app).open();
-                        }
-                        return true;
-                    }
-                    return false;
-                }
-            });
-            this.addSettingTab(new SampleSettingTab(this.app, this));
-            // #todo No longer available or may have been renamed/moved.
-            //this.registerCodeMirror((cm: CodeMirror.Editor) => {
-            //    console.log('codemirror', cm);
-            //});
-            this.registerDomEvent(document, 'click', (evt) => {
-                console.log('click', evt);
-            });
-            this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
-        });
-    }
-    onunload() {
-        console.log('unloading plugin');
-    }
-    loadSettings() {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.settings = Object.assign({}, DEFAULT_SETTINGS, yield this.loadData());
-        });
-    }
-    saveSettings() {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.saveData(this.settings);
-        });
-    }
+  constructor() {
+    const _manifest = {
+      id: 'my-plugin',
+      name: 'My Plugin',
+      author: 'Author Name',
+      version: '0.0.1',
+      minAppVersion: '0.9.0',
+      description: 'My awesome plugin for Obsidian!'
+    };
+    super(app, _manifest);
+    this.settings = Object.assign({}, DEFAULT_SETTINGS);
+  }
+  onload() {
+    return __awaiter(this, void 0, void 0, function* () {
+      console.log('loading plugin');
+      yield this.loadSettings();
+      this.addRibbonIcon('dice', 'Sample Plugin', () => {
+        new obsidian.Notice('This is a notice!');
+      });
+      this.addStatusBarItem().setText('Status Bar Text');
+      this.addCommand({
+        id: 'open-sample-modal',
+        name: 'Open Sample Modal',
+        // callback: () => {
+        // 	console.log('Simple Callback');
+        // },
+        checkCallback: (checking) => {
+          const leaf = this.app.workspace.activeLeaf;
+          if (leaf) {
+            if (!checking) {
+              new SampleModal(this.app).open();
+            }
+            return true;
+          }
+          return false;
+        }
+      });
+      this.addSettingTab(new SampleSettingTab(this.app, this));
+      // #todo No longer available or may have been renamed/moved.
+      //this.registerCodeMirror((cm: CodeMirror.Editor) => {
+      //    console.log('codemirror', cm);
+      //});
+      this.registerDomEvent(document, 'click', (evt) => {
+        console.log('click', evt);
+      });
+      this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
+    });
+  }
+  onunload() {
+    console.log('unloading plugin');
+  }
+  loadSettings() {
+    return __awaiter(this, void 0, void 0, function* () {
+      this.settings = Object.assign({}, DEFAULT_SETTINGS, yield this.loadData());
+    });
+  }
+  saveSettings() {
+    return __awaiter(this, void 0, void 0, function* () {
+      yield this.saveData(this.settings);
+    });
+  }
 }
 class SampleModal extends obsidian.Modal {
-    constructor(app) {
-        super(app);
-    }
-    onOpen() {
-        const { contentEl } = this;
-        contentEl.setText('Woah!');
-    }
-    onClose() {
-        const { contentEl } = this;
-        contentEl.empty();
-    }
+  constructor(app) {
+    super(app);
+  }
+  onOpen() {
+    const { contentEl } = this;
+    contentEl.setText('Woah!');
+  }
+  onClose() {
+    const { contentEl } = this;
+    contentEl.empty();
+  }
 }
 class SampleSettingTab extends obsidian.PluginSettingTab {
-    constructor(app, plugin) {
-        super(app, plugin);
-        this.plugin = plugin;
-    }
-    display() {
-        const { containerEl } = this;
-        containerEl.empty();
-        containerEl.createEl('h2', { text: 'Settings for my awesome plugin.' });
-        new obsidian.Setting(containerEl)
-            .setName('Setting #1')
-            .setDesc("It's a secret")
-            .addText((text) => text
-            .setPlaceholder('Enter your secret')
-            .setValue('')
-            .onChange((value) => __awaiter(this, void 0, void 0, function* () {
-            console.log('Secret: ' + value);
-            this.plugin.settings.mySetting = value;
-            yield this.plugin.saveSettings();
-        })));
-    }
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    containerEl.createEl('h2', { text: 'Settings for my awesome plugin.' });
+    new obsidian.Setting(containerEl)
+      .setName('Setting #1')
+      .setDesc("It's a secret")
+      .addText((text) =>
+        text
+          .setPlaceholder('Enter your secret')
+          .setValue('')
+          .onChange((value) =>
+            __awaiter(this, void 0, void 0, function* () {
+              console.log('Secret: ' + value);
+              this.plugin.settings.mySetting = value;
+              yield this.plugin.saveSettings();
+            })
+          )
+      );
+  }
 }
 
 module.exports = MyPlugin;
