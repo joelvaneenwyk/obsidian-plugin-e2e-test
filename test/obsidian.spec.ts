@@ -1,5 +1,5 @@
 import { test, expect, _electron as electron } from '@playwright/test';
-import { existsSync } from 'fs';
+import { existsSync, PathLike } from 'fs';
 
 test('obsidian launch test', async () => {
   // find the root of the repository by going up from current directory until finding 'manifest.json'
@@ -8,22 +8,22 @@ test('obsidian launch test', async () => {
     rootPath = `${rootPath}/..`;
   }
 
-  let obsidianPaths = [
+  const obsidianPaths: Array<string | undefined | PathLike> = [
     process.env.OBSIDIAN_PATH,
     '/obsidian/obsidian',
     `${rootPath}/.build/obsidian/obsidian`
   ];
 
-  let obsidianPath = null;
-  for (let path of obsidianPaths) {
-    if (existsSync(path)) {
+  let obsidianPath;
+  for (const path of obsidianPaths) {
+    if (path && existsSync(path)) {
       obsidianPath = path;
       break;
     }
   }
 
   const electronApp = await electron.launch({
-    executablePath: obsidianPath,
+    executablePath: obsidianPath?.toString(),
     args: ['test/empty_vault']
   });
   const isPackaged = await electronApp.evaluate(async ({ app }) => {
