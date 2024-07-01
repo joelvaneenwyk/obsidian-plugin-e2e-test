@@ -4,14 +4,7 @@
  *
  */
 
-import {
-  App,
-  Modal,
-  Notice,
-  Plugin,
-  PluginSettingTab,
-  Setting
-} from 'obsidian';
+import { App, Modal, type PluginManifest, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
 interface MyPluginSettings {
   mySetting: string;
@@ -23,6 +16,19 @@ const DEFAULT_SETTINGS: MyPluginSettings = {
 
 export default class MyPlugin extends Plugin {
   settings: MyPluginSettings;
+
+  constructor() {
+    const _manifest: PluginManifest = {
+      id: 'my-plugin',
+      name: 'My Plugin',
+      author: 'Author Name',
+      version: '0.0.1',
+      minAppVersion: '0.9.0',
+      description: 'My awesome plugin for Obsidian!'
+    };
+    super(app, _manifest);
+    this.settings = Object.assign({}, DEFAULT_SETTINGS);
+  }
 
   async onload() {
     console.log('loading plugin');
@@ -42,7 +48,7 @@ export default class MyPlugin extends Plugin {
       // 	console.log('Simple Callback');
       // },
       checkCallback: (checking: boolean) => {
-        let leaf = this.app.workspace.activeLeaf;
+        const leaf = this.app.workspace.activeLeaf;
         if (leaf) {
           if (!checking) {
             new SampleModal(this.app).open();
@@ -64,9 +70,7 @@ export default class MyPlugin extends Plugin {
       console.log('click', evt);
     });
 
-    this.registerInterval(
-      window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000)
-    );
+    this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
   }
 
   onunload() {
@@ -88,12 +92,12 @@ class SampleModal extends Modal {
   }
 
   onOpen() {
-    let { contentEl } = this;
+    const { contentEl } = this;
     contentEl.setText('Woah!');
   }
 
   onClose() {
-    let { contentEl } = this;
+    const { contentEl } = this;
     contentEl.empty();
   }
 }
@@ -107,7 +111,7 @@ class SampleSettingTab extends PluginSettingTab {
   }
 
   display(): void {
-    let { containerEl } = this;
+    const { containerEl } = this;
 
     containerEl.empty();
 
