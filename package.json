@@ -5,16 +5,22 @@
   "scripts": {
     "build": "yarn build:rollup && yarn build:deploy",
     "build:rollup": "rollup --config rollup.config.mjs --environment BUILD:production",
-    "build:deploy": "mkdir -p test/empty_vault/.obsidian/plugins/sample-plugin && cp manifest.json styles.css dist/main.js test/empty_vault/.obsidian/plugins/sample-plugin",
+    "build:deploy": "shx mkdir -p test/empty_vault/.obsidian/plugins/sample-plugin && shx cp manifest.json styles.css dist/main.js test/empty_vault/.obsidian/plugins/sample-plugin",
     "test": "yarn playwright test --update-snapshots --headed",
     "check": "yarn cspell --no-cache --unique .",
     "cspell:update": "cspell --no-cache --words-only --unique . | sort -uf >./.vscode/cspell-obsidian-e2e.txt",
     "format": "prettier --write ."
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": "^20 || ^22",
+    "yarn": "^4.2.2"
   },
-  "packageManager": "yarn@4.2.2+sha512.c44e283c54e02de9d1da8687025b030078c1b9648d2895a65aab8e64225bfb7becba87e1809fc0b4b6778bbd47a1e2ab6ac647de4c5e383a53a7c17db6c3ff4b",
+  "prettier": {
+    "trailingComma": "none",
+    "semi": true,
+    "singleQuote": true
+  },
+  "packageManager": "yarn@4.3.1+sha512.af78262d7d125afbfeed740602ace8c5e4405cd7f4735c08feb327286b2fdb2390fbca01589bfd1f50b1240548b74806767f5a063c94b67e431aabd0d86f7774",
   "dependencies": {
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.26.3",
@@ -37,6 +43,7 @@
     "prettier": "^3.2.5",
     "rollup": "^4.17.2",
     "selenium-webdriver": "^4.20.0",
+    "shx": "^0.3.4",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.8.0"
