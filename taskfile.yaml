@@ -1,0 +1,70 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  OBSIDIAN_PATH: './.build/obsidian/obsidian'
+
+tasks:
+  default:
+    cmds:
+      - task: test
+
+  setup:
+    deps: [install-obsidian, install-proto]
+
+  install:
+    deps: [setup]
+    cmds:
+      - yarn install
+
+  build:
+    deps: [install]
+    cmds:
+      - yarn build
+      - yarn test
+
+  test:
+    deps: [build]
+    cmds:
+      - yarn test
+
+  run:
+    deps: [build]
+    cmds:
+      - cmd: yarn test
+    env:
+      OBSIDIAN_PATH: '{{ .OBSIDIAN_PATH }}'
+
+  install-obsidian:
+    internal: true
+    cmds:
+      - cmd: bash ./build/install-obsidian.sh
+        platforms: [linux]
+    status:
+      - 'test -f "{{ .ROOT_DIR }}/.build/obsidian/obsidian"'
+
+  install-proto:
+    internal: true
+    cmds:
+      - cmd: bash ./build/install-proto.sh
+        platforms: [linux]
+    status:
+      - test -f ~/.proto/bin/proto
+
+  xvfb-run:
+    internal: true
+    deps: [build]
+    cmds:
+      - cmd: xvfb-run --auto-servernum yarn test
+    env:
+      DISPLAY: ':99'
+      OBSIDIAN_PATH: '{{ .OBSIDIAN_PATH }}'
+
+  docker-build:
+    cmds:
+      - cmd: docker build -t obsidian .
+
+  docker-run:
+    cmds:
+      - cmd: docker run --rm --security-opt seccomp="$(current_dir)/chrome.json" obsidian
